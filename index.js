@@ -5,7 +5,9 @@ const passButton = document.getElementById('pass-btn');
 const pass1 = document.getElementById('pass-output1');
 const pass2 = document.getElementById('pass-output2');
 
-passButton.addEventListener('click', function generatePass() {
+passButton.addEventListener('click', generatePass);
+
+function generatePass() {
     pass1.textContent = '';
     pass2.textContent = '';
     for (let i = 0; i < 15; i++) {
@@ -14,7 +16,11 @@ passButton.addEventListener('click', function generatePass() {
         pass1.textContent += characters[randomPass1]
         pass2.textContent += characters[randomPass2]
     }
-})
+}
+
+[pass1, pass2].forEach(passElement => {
+    passElement.addEventListener('click', () => copyToClipboard(passElement.id));
+});
 
 function copyToClipboard(elementId) {
     const element = document.getElementById(elementId);
